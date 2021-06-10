@@ -1,21 +1,12 @@
 pipeline {
-    agent any
+    agent { dockerfile true }
     stages {
-        stage('Back-end') {
-            agent {
-                docker { image 'maven:3.8.1-adoptopenjdk-11' }
-            }
-            steps {
-                sh 'mvn --version'
-            }
-        }
-        stage('Forn-end') {
-            agent {
-                docker { image 'node:14-alpine' }
-            }
-            steps {
+        stage('Test') {
+                        steps {
                 sh 'node --version'
+                sh 'svn --version'
             }
         }
+        
     }
 }
