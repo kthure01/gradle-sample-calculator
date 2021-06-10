@@ -1,21 +1,11 @@
 pipeline {
     agent {
-        docker { images 'node:14-apline'}
+        docker { image 'node:14-apline'}
     }
     stages {
-        stage('Build') {
+        stage('Docker node version') {
             steps {
-                sh './gradlew classes'
-            }
-        }
-        stage ('Test') {
-            steps {
-                sh './gradlew test'
-            }
-        }
-        stage('Package') {
-            steps {
-                sh './gradlew jar'
+                sh 'node --version'
             }
         }
     }
